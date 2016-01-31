@@ -19,4 +19,8 @@ class User
   def add_coach(coach)
     @edges_to_coaches << UserEdge.new(coach)
   end
+
+  def edges
+    edges_to_students + edges_to_coaches
+  end
 end
