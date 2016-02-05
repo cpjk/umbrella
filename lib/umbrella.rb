@@ -68,13 +68,14 @@ module Umbrella
       adjacent_users = sib.edges.map { |edge| edge.to_user }
       diffs_if_infect = adjacent_users.select { |user| !infected[user] }.count
       diffs_if_do_not_infect = adjacent_users.select { |user| !!infected[user] }.count
-      diff = diffs_if_infect - diffs_if_do_not_infect
+      diff = diffs_if_do_not_infect - diffs_if_infect
       { user: sib, diff: diff }
     end
 
     diff = diffs.sort_by {|diff_hash| diff_hash[:diff]}
-    buffer += 1
-    diff.each do |diff| # infect all siblings for which infection will reduce version differences
+    # # infect all siblings for which no infection will
+    # increase the number of student-coach version differences
+    diff.each do |diff|
       break if buffer <= 0 || diff[:diff] <= 0
       diff[:user].site_version = site_version
       infected[diff[:user]] = true
