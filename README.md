@@ -35,3 +35,10 @@ u5.add_coach u4
 
 Umbrella.limited_infection(start_user=u1, version="v0.1.1", limit=3, buffer=1)
 ```
+
+## Testing
+
+Umbrella uses minitest for testing. To run the tests:
+```shell
+$ bundle exec rake test
+```
