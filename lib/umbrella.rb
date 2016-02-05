@@ -1,6 +1,7 @@
 require_relative "user"
 
 module Umbrella
+
   # Infect the entire connected component containing the given user
   # with the given site version through student-coach relationships.
   def self.infection(start_user, site_version)
