@@ -1,6 +1,5 @@
 require "minitest/autorun"
 require_relative "../lib/umbrella"
-require "pry"
 
 class UserTest < Minitest::Test
 
