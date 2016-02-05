@@ -33,7 +33,7 @@ Umbrella.limited_infection(start_user=u1, version="v0.1.1", limit=3, buffer=1)
 
 ## Testing
 
-Umbrella uses minitest for testing. To run the tests:
+Umbrella uses [minitest](https://github.com/seattlerb/minitest) for testing. To run the tests:
 ```shell
 $ bundle exec rake test
 ```
