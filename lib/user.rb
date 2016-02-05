@@ -20,6 +20,14 @@ class User
     @edges_to_coaches << UserEdge.new(coach)
   end
 
+  def remove_coach(coach)
+    @edges_to_coaches.delete_if { |edge| edge.to_user == coach }
+  end
+
+  def remove_student(student)
+    @edges_to_students.delete_if { |edge| edge.to_user == student }
+  end
+
   def edges
     edges_to_students + edges_to_coaches
   end
