@@ -23,4 +23,16 @@ class User
   def edges
     edges_to_students + edges_to_coaches
   end
+
+  # class methods
+
+  def self.add_coach(student, coach)
+    student.add_coach(coach)
+    coach.add_student(student)
+  end
+
+  def self.add_student(coach, student)
+    coach.add_student(student)
+    student.add_coach(coach)
+  end
 end
