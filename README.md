@@ -33,5 +33,5 @@ u4.add_coach u3
 u4.add_student u5
 u5.add_coach u4
 
-Umbrella.limited_infection(u1, "v0.1.1", 3, 1)
+Umbrella.limited_infection(start_user=u1, version="v0.1.1", limit=3, buffer=1)
 ```
