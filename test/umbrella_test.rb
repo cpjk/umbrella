@@ -1,7 +1,7 @@
 require "minitest/autorun"
-require_relative "../lib/infection"
+require_relative "../lib/umbrella"
 
-class InfectionTest < Minitest::Test
+class UmbrellaTest < Minitest::Test
 
   def test_infects_first_user
     u1 = User.new
@@ -10,7 +10,7 @@ class InfectionTest < Minitest::Test
     u1.add_student u2
     u2.add_coach u1
 
-    Infection.infect(u1, "v0.1.1")
+    Umbrella.infection(u1, "v0.1.1")
 
     assert u1.site_version == "v0.1.1"
   end
@@ -22,7 +22,7 @@ class InfectionTest < Minitest::Test
     u1.add_student u2
     u2.add_coach u1
 
-    Infection.infect(u1, "v0.1.1")
+    Umbrella.infection(u1, "v0.1.1")
 
     assert u1.site_version == "v0.1.1" && u2.site_version == "v0.1.1"
   end
@@ -31,7 +31,7 @@ class InfectionTest < Minitest::Test
     u1 = User.new
     u2 = User.new
 
-    Infection.infect(u1, "v0.1.1")
+    Umbrella.infection(u1, "v0.1.1")
 
     refute u2.site_version == "v0.1.1"
   end
@@ -48,7 +48,7 @@ class InfectionTest < Minitest::Test
     u3.add_student u1
     u1.add_coach u3
 
-    Infection.infect(u1, "v0.1.1")
+    Umbrella.infection(u1, "v0.1.1")
 
     assert u1.site_version == "v0.1.1"
     assert u2.site_version == "v0.1.1"
@@ -62,7 +62,7 @@ class InfectionTest < Minitest::Test
     u1.add_student u2
     u2.add_coach u1
 
-    Infection.limited_infect(u1, "v0.1.1", limit=2, buffer=1)
+    Umbrella.limited_infection(u1, "v0.1.1", limit=2, buffer=1)
 
     assert u1.site_version == "v0.1.1"
   end
@@ -74,7 +74,7 @@ class InfectionTest < Minitest::Test
     u1.add_student u2
     u2.add_coach u1
 
-    Infection.limited_infect(u1, "v0.1.1", 4, 0)
+    Umbrella.limited_infection(u1, "v0.1.1", 4, 0)
 
     assert u1.site_version == "v0.1.1" && u2.site_version == "v0.1.1"
   end
@@ -83,7 +83,7 @@ class InfectionTest < Minitest::Test
     u1 = User.new
     u2 = User.new
 
-    Infection.limited_infect(u1, "v0.1.1", 4, 0)
+    Umbrella.limited_infection(u1, "v0.1.1", 4, 0)
 
     refute u2.site_version == "v0.1.1"
   end
@@ -100,7 +100,7 @@ class InfectionTest < Minitest::Test
     u3.add_student u1
     u1.add_coach u3
 
-    Infection.limited_infect(u1, "v0.1.1", 4, 0)
+    Umbrella.limited_infection(u1, "v0.1.1", 4, 0)
 
     assert u1.site_version == "v0.1.1"
     assert u2.site_version == "v0.1.1"
@@ -123,7 +123,7 @@ class InfectionTest < Minitest::Test
     u4.add_student u5
     u5.add_coach u4
 
-    Infection.limited_infect(u1, "v0.1.1", 2, 0)
+    Umbrella.limited_infection(u1, "v0.1.1", 2, 0)
     assert u1.site_version == "v0.1.1"
     assert u2.site_version == "v0.1.1"
     refute u3.site_version == "v0.1.1"
@@ -145,7 +145,7 @@ class InfectionTest < Minitest::Test
     u4.add_student u5
     u5.add_coach u4
 
-    Infection.limited_infect(u1, "v0.1.1", 3, 1)
+    Umbrella.limited_infection(u1, "v0.1.1", 3, 1)
     assert u1.site_version == "v0.1.1"
     assert u2.site_version == "v0.1.1"
     assert u3.site_version == "v0.1.1"

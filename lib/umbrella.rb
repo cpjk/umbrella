@@ -1,9 +1,9 @@
 require_relative "user"
 
-module Infection
+module Umbrella
   # Infect the entire connected component containing the given user
   # with the given site version through student-coach relationships.
-  def self.infect(start_user, site_version)
+  def self.infection(start_user, site_version)
     queue = [start_user]
     discovered = {start_user => true} # nodes that have already been enqueued
     infected = {} # nodes that have been infected
@@ -26,7 +26,7 @@ module Infection
   # Try to infect up to the given limit of users with the given site version.
   # When the limit is reached, try to minimize the number of student-coach
   # version differences caused due to stopping the infection.
-  def self.limited_infect(start_user, site_version, limit, buffer)
+  def self.limited_infection(start_user, site_version, limit, buffer=5)
     queue = [{to: start_user, from: nil}]
     discovered = {start_user => true} # nodes that have already been enqueued
     infected = {} # nodes that have been infected
