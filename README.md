@@ -23,15 +23,10 @@ u2 = User.new
 u3 = User.new
 u4 = User.new
 u5 = User.new
-
-u1.add_student u2
-u2.add_coach u1
-u2.add_student u3
-u3.add_coach u2
-u3.add_student u4
-u4.add_coach u3
-u4.add_student u5
-u5.add_coach u4
+User.add_student(u1, u2)
+User.add_student(u2, u3)
+User.add_student(u3, u4)
+User.add_student(u4, u5)
 
 Umbrella.limited_infection(start_user=u1, version="v0.1.1", limit=3, buffer=1)
 ```
