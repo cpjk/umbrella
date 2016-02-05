@@ -7,8 +7,7 @@ class UmbrellaTest < Minitest::Test
     u1 = User.new
     u2 = User.new
 
-    u1.add_student u2
-    u2.add_coach u1
+    User.add_student(u1, u2)
 
     Umbrella.infection(u1, "v0.1.1")
 
@@ -19,8 +18,7 @@ class UmbrellaTest < Minitest::Test
     u1 = User.new
     u2 = User.new
 
-    u1.add_student u2
-    u2.add_coach u1
+    User.add_student(u1, u2)
 
     Umbrella.infection(u1, "v0.1.1")
 
@@ -41,12 +39,9 @@ class UmbrellaTest < Minitest::Test
     u2 = User.new
     u3 = User.new
 
-    u1.add_student u2
-    u2.add_coach u1
-    u2.add_student u3
-    u3.add_coach u2
-    u3.add_student u1
-    u1.add_coach u3
+    User.add_student(u1, u2)
+    User.add_student(u2, u3)
+    User.add_student(u3, u1)
 
     Umbrella.infection(u1, "v0.1.1")
 
@@ -59,8 +54,7 @@ class UmbrellaTest < Minitest::Test
     u1 = User.new
     u2 = User.new
 
-    u1.add_student u2
-    u2.add_coach u1
+    User.add_student(u1, u2)
 
     Umbrella.limited_infection(u1, "v0.1.1", limit=2, buffer=1)
 
@@ -71,8 +65,7 @@ class UmbrellaTest < Minitest::Test
     u1 = User.new
     u2 = User.new
 
-    u1.add_student u2
-    u2.add_coach u1
+    User.add_student(u1, u2)
 
     Umbrella.limited_infection(u1, "v0.1.1", 4, 0)
 
@@ -93,12 +86,9 @@ class UmbrellaTest < Minitest::Test
     u2 = User.new
     u3 = User.new
 
-    u1.add_student u2
-    u2.add_coach u1
-    u2.add_student u3
-    u3.add_coach u2
-    u3.add_student u1
-    u1.add_coach u3
+    User.add_student(u1, u2)
+    User.add_student(u2, u3)
+    User.add_student(u3, u1)
 
     Umbrella.limited_infection(u1, "v0.1.1", 4, 0)
 
@@ -114,14 +104,10 @@ class UmbrellaTest < Minitest::Test
     u4 = User.new
     u5 = User.new
 
-    u1.add_student u2
-    u2.add_coach u1
-    u2.add_student u3
-    u3.add_coach u2
-    u3.add_student u4
-    u4.add_coach u3
-    u4.add_student u5
-    u5.add_coach u4
+    User.add_student(u1, u2)
+    User.add_student(u2, u3)
+    User.add_student(u3, u4)
+    User.add_student(u4, u5)
 
     Umbrella.limited_infection(u1, "v0.1.1", 2, 0)
     assert u1.site_version == "v0.1.1"
@@ -136,14 +122,10 @@ class UmbrellaTest < Minitest::Test
     u4 = User.new
     u5 = User.new
 
-    u1.add_student u2
-    u2.add_coach u1
-    u2.add_student u3
-    u3.add_coach u2
-    u3.add_student u4
-    u4.add_coach u3
-    u4.add_student u5
-    u5.add_coach u4
+    User.add_student(u1, u2)
+    User.add_student(u2, u3)
+    User.add_student(u3, u4)
+    User.add_student(u4, u5)
 
     Umbrella.limited_infection(u1, "v0.1.1", 3, 1)
     assert u1.site_version == "v0.1.1"
