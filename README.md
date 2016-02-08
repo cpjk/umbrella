@@ -9,6 +9,11 @@ $ git clone git@github.com:cpjk/umbrella.git
 $ cd umbrella
 $ bundle install
 ```
+## Umbrella.infection
+This function takes a version string and user, and does a breadth-first traversal of the all users connected to the initial user through 'coaches' and 'is coached by' relationships, setting the version string for all visited users to the given version string.
+
+## Umbrella.limited_infection
+This function acts like `Umbrella.infection`, but also takes a user limit, and an optional buffer. The algorithm will infect users through breadth-first traversal, until the user limit is reached. After the limit is reached, the algorithm will try to minimize the number of version differences between users and their coaches and students by traversing through the uninfected siblings of the limit user (via the user through which the limit user was reached), and individually infecting them only if doing so will result in less differences than not infecting them. This approach is naive, because it does not take into account the effect on the next user of infecting/not infecting one user. The buffer is an optional parameter that limits the number of siblings that will be considered after the limit is reached.
 
 ## Usage
 You can create a network of users with `User#add_coach` and `User#add_student`.
